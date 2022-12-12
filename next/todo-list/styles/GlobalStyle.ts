@@ -1,0 +1,15 @@
+import { createGlobalStyle, css } from "styled-components";
+import reset from "styled-reset";
+
+const globalStyle = css`
+  ${reset}
+  body {
+    font-family: Noto Sans, Noto Sans KR;
+  }
+`;
+
+const GlobalStyle = createGlobalStyle`
+    ${globalStyle}
+`;
+
+export default GlobalStyle;
