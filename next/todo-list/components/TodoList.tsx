@@ -1,7 +1,6 @@
 import React,{useCallback,useMemo} from "react";
 import styled from "styled-components";
 import palette from "../styles/palettes";
-
 import { TodoType } from "../types/todo";
 
 const Container = styled.div`
@@ -104,18 +103,6 @@ const Container = styled.div`
 
 `;
 
-const TodoHeader = styled.div`
-    padding: 12px;
-    border-bottom: 1px solid ;
-`;
-
-const TodoListLastNumber = styled.div`
-
-`;
-
-
-
-
 
 interface IProps{
     todos:TodoType[];
@@ -191,9 +178,9 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
     return (
         <Container>
             <div className="todo-list-heder">
-                <p className="">
+
                 TODO 남은 개수 <p>{todos.length}개</p>
-                </p>
+
             </div>
             <div className="todo-list-header-colors">
                 {Object.keys(todoColorNums).map((color,index)=>(
@@ -218,11 +205,7 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
                             </p>
                         </div>
                         <div className="todo-right-side">
-                                {!todo.checked && (
-                                    <button type="button" className="todo-button" onClick={()=>{}}>
 
-                                    </button>
-                                )}
                         </div>
                     </li>
                     
