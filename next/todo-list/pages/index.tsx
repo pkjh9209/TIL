@@ -4,11 +4,12 @@ import {GetServerSideProps, NextPage} from "next";
 import React from "react";
 import TodoList from "../components/TodoList";
 import { TodoType } from "../types/todo";
+import {getTodoAPI} from "../lib/api/todo"
 
 
 
 const todos : TodoType[] = [
-  {id :1 , text: "마트가서 장보기",color: "red", checked : false},
+  {id :1 , text: "마트가서 장보기111",color: "red", checked : false},
   {id :2 , text: "숙제하기",color: "orange", checked : false},
   {id :3 , text: "코딩하기",color: "yellow", checked : true},
   {id :4 , text: "넥스트공부하기",color: "green", checked : false},
@@ -23,8 +24,8 @@ const app : NextPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await Axios.get("http://localhost:3000/api/todos");
-    console.log(res);
+    const {data} = await getTodoAPI();
+    console.log(data);
     return {props:{}};
   } catch (e) {
     console.log(e);
