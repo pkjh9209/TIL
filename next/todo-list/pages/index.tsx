@@ -32,10 +32,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     // console.log(process.env,"서버");
     const {data} = await getTodoAPI();
     console.log(data);
-    return {props:{todos:data}};
+    return {props:{}};
   } catch (e) {
     console.log(e);
-    return {props:{todos:[]}};
+    return {props:{}};
   }
 };
 
