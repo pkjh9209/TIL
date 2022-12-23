@@ -1,17 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Data from "../../../lib/data";
-
+import Data from "../../../lib/data/index";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "PATCH") {
+  if (req.method === "GET") {
     try {
-      const todoId = Number(req.query.id);
-      const todo = Data.todo.exist({ id: todoId });
-      if (!todo) {
-        res.statusCode = 404;
-        res.end();
-      }
+      const todos = Data.todo.getList;
       res.statusCode = 200;
-      return res.end();
+      return res.send(todos);
     } catch (e) {
       console.log(e);
       res.statusCode = 500;
