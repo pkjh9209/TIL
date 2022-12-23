@@ -1,5 +1,4 @@
-
-import Axios from "axios";
+// import Axios from "axios";
 import {GetServerSideProps, NextPage} from "next";
 import React from "react";
 import TodoList from "../components/TodoList";
@@ -29,12 +28,9 @@ const app : NextPage<IProps> = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    // console.log(process.env,"서버");
     const {data} = await getTodoAPI();
-    console.log(data);
-    return {props:{}};
+    return {props:{todos:data}};
   } catch (e) {
-    console.log(e);
     return {props:{}};
   }
 };
