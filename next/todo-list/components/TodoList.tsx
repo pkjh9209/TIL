@@ -4,7 +4,7 @@ import palette from "../styles/palettes";
 import { TodoType } from "../types/todo";
 import TrashCanIcon from "../public/static/svg/trash_can.svg";
 import CheckMarkIcon from "../public/static/svg/check_mark.svg";
-import { checkTodoAPI } from "../lib/api/todo";
+import { checkTodoAPI, deleteTodoAPI } from "../lib/api/todo";
 
 import Data from "../lib/data";
 import Router from "next/router";
@@ -197,31 +197,42 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
         return colors;
       }, [todos]);
 
-  //* 투두 체크하기
-const [localTodos,setLocalTodos] = useState(todos);
-const checkTodo = async (id:number) => {
-    try {
-        await checkTodoAPI(id);
-        console.log('체크함');
-        // 체크방법 1 데이터 다시받기
-        // Router.reload;
+  //투두 체크하기
+    const [localTodos,setLocalTodos] = useState(todos);
+    const checkTodo = async (id:number) => {
+        try {
+            await checkTodoAPI(id);
+            console.log('체크함');
+            // 체크방법 1 데이터 다시받기
+            // Router.reload;
 
-        // 체크방법 2 데이터 다시받기
-        // Router.push("/");
-        
-        // 체크방법 3 data 를 local로 저장하여 사용하기
-        const newTodos = localTodos.map((todo)=>{
-            if(todo.id === id){
-                return {...todo,checked: !todo.checked}
-            }
-            return todo;
-        });
-        setLocalTodos(newTodos);
-    } catch (e) {
-        console.log(e);
+            // 체크방법 2 데이터 다시받기
+            // Router.push("/");
+            
+            // 체크방법 3 data 를 local로 저장하여 사용하기
+            const newTodos = localTodos.map((todo)=>{
+                if(todo.id === id){
+                    return {...todo,checked: !todo.checked}
+                }
+                return todo;
+            });
+            setLocalTodos(newTodos);
+        } catch (e) {
+            console.log(e);
+        }
     }
-}
-      
+
+  //투두 삭제하기
+  const deleteTodo = async (id: number) => {
+    try {
+      await deleteTodoAPI(id);
+      const newTodos = todos.filter((todo) => todo.id !== id);
+      setLocalTodos(newTodos);
+      console.log("삭제했습니다.");
+    } catch (e) {
+      console.log(e);
+    }
+  };      
     return (
         <Container>
             <div className="todo-list-heder">

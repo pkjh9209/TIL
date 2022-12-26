@@ -24,5 +24,4 @@ const write = async (todos: TodoType[]) => {
 };
 
 // 투두리스트 저장하기
-
 export default { getList, exist, write };
