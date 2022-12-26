@@ -3,7 +3,7 @@ import { TodoType } from "../../types/todo";
 
 //* 투두 리스트 데이터 불러오기
 const getList = () => {
-  const todoBuffer = readFileSync("data/todo.json");
+  const todoBuffer = readFileSync("C:/TIL/next/todo-list/data/todos.json");
   const todoString = todoBuffer.toString();
   if (!todoString) {
     return [];
@@ -20,7 +20,9 @@ const exist = ({ id }: { id: number }) => {
 };
 
 const write = async (todos: TodoType[]) => {
-  writeFileSync("data/todos.json", JSON.stringify(todos));
+  writeFileSync("C:/TIL/next/todo-list/data/todos.json", JSON.stringify(todos));
 };
+
+// 투두리스트 저장하기
 
 export default { getList, exist, write };
