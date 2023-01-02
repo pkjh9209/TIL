@@ -121,9 +121,6 @@ const Container = styled.div`
     .bg-yellow{
         background-color: ${palette.yellow};
     }
-
-
-
 `;
 
 
