@@ -2,51 +2,66 @@ import React,{useCallback,useMemo} from "react";
 import styled from "styled-components";
 import palette from "../styles/palettes";
 import { TodoType } from "../types/todo";
+import TrashCanIcon from "../public/static/svg/trash_can.svg";
+import CheckMarkIcon from "../public/static/svg/check_mark.svg";
 
 const Container = styled.div`
     width : 100%;
     max-width: 750px;
     margin:auto;
 
-    .todo-list{
-        .todo-item{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            height: 52px;
-            border-bottom: 1px solid ${palette.gray};
+    .todo-list {
+        .todo-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 52px;
+        border-bottom: 1px solid ${palette.gray};
 
-            .todo-right-side{
-                display: flex;
-                margin-right: 12px;
-
-                .todo-button{
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    border: 1px solid ${palette.gray};
-                    background-color: transparent;
-                    outline:none;
-                }
-            }
-
-            .todo-left-side{
+            .todo-left-side {
                 width: 100%;
                 height: 100%;
                 display: flex;
                 align-items: center;
-                .todo-color-block{
-                    width: 12px;
-                    height: 100%;
+                .todo-color-block {
+                width: 12px;
+                height: 100%;
                 }
-                .checked-todo-text{
-                    color:${palette.gray};
-                    text-decoration : line-through;
+                .checked-todo-text {
+                color: ${palette.gray};
+                text-decoration: line-through;
                 }
-                .todo-text{
-                    margin-left:12px;
-                    font-size: 16px;
+                .todo-text {
+                margin-left: 12px;
+                font-size: 16px;
+                }
+            }
+            .todo-right-side {
+                display: flex;
+                align-items: center;
+                margin-right: 12px;
+                svg {
+                &:first-child {
+                    margin-right: 16px;
+                }
+                }
+                .todo-trash-can {
+                width: 16px;
+                path {
+                    fill: ${palette.deep_red};
+                }
+                }
+                .todo-check-mark {
+                fill: ${palette.deep_green};
+                }
+                .todo-button {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 1px solid ${palette.gray};
+                background-color: transparent;
+                outline: none;
                 }
             }
         }
@@ -64,7 +79,9 @@ const Container = styled.div`
     }
 
     .todo-list-header-colors{
+        padding: 20px;
         display:flex;
+        border-bottom: 1px solid #ddd ;
         .todo-list-header-color-num{
             display:flex;
             margin-right: 8px;
@@ -174,7 +191,7 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
         return colors;
       }, [todos]);
     
-
+      
     return (
         <Container>
             <div className="todo-list-heder">
@@ -195,7 +212,7 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
                 {todos.map((todo)=>(
                     <li className="todo-item" key={todo.id}>
                         <div className="todo-left-side">
-                        <div className={`todo-color-block bg-${todo.color}`} />
+                            <div className={`todo-color-block bg-${todo.color}`} />
                             <p
                                 className={`todo-text ${
                                 todo.checked ? "checked-todo-text" : ""
@@ -205,7 +222,31 @@ const TodoList : React.FC<IProps> = ({todos}) =>{
                             </p>
                         </div>
                         <div className="todo-right-side">
-
+                        {todo.checked && (
+                            <>
+                            <TrashCanIcon
+                                className="todo-trash-can"
+                                onClick={() => {
+                                
+                                }}
+                            />
+                            <CheckMarkIcon
+                                className="todo-check-mark"
+                                onClick={() => {
+                                
+                                }}
+                            />
+                            </>
+                        )}
+                        {!todo.checked && (
+                            <button
+                            type="button"
+                            className="todo-button"
+                            onClick={() => {
+                                
+                            }}
+                            />
+                        )}
                         </div>
                     </li>
                     

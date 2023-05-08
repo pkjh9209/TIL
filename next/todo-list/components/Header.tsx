@@ -9,6 +9,7 @@ const Container = styled.div`
   max-width: 750px;
   height: 52px;
   padding: 0 12px;
+  box-sizing: border-box;
   border-bottom: 1px solid ${pallete.gray};
   h1 {
     font-size: 21px;
